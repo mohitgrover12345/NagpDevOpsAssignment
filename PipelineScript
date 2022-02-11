@@ -1,0 +1,16 @@
+node{
+    stage('Git Repository Clone'){
+        git 'https://github.com/mohitgrover12345/NagpDevOpsAssignment'
+    }
+	stage('Checkout status')
+	{
+	 echo 'Git clone Completed'
+	}
+    stage('Build'){
+        bat 'mvn clean verify sonar:sonar -Dsonar.projectKey=SonarProject -Dsonar.host.url=http://localhost:9000  -Dsonar.login=0d3fac00f7dcc182399769fdf6b5d94c51592d17'
+    }
+	stage('Completed')
+	{
+	 echo 'Project Build is now completed !!!'
+	}
+}
